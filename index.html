@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -373,7 +374,7 @@
     <h2 class="letter-greeting">Gửi em,</h2>
     <div class="letter-body">
       <p>Helu nương nương, người đẹp, Kennie quý giá nhà mình nhé.</p>
-      <p>Gửi tặng em bức thư nhân dịp có một vũ trụ nhỏ xinh lòng tui và mọi người xuất hiện nhe.</p>
+      <p>Gửi tặng em bức thư nhân dịp có một vũ trụ nhỏ xinh lòng tui và mọi người xuất hiện nhe.</p>
       <p>Em mắng tui sến súa rồi em đọc tiếp nhe (tui biết em cười đó :))).</p>
       <p>Chà, tui với em biết nhau chưa quá lâu, tụi mình vẫn đang trong giai đoạn tìm hiểu và mở lòng nên tui chưa hiểu hết về em. Nhưng tui biết em là một cô gái rất xinh đẹp. Và thật ra, vẻ đẹp ngoại hình lại là điều tui ít chú ý nhất ở em. Tui trân trọng vì em tốt bụng, em luôn quan tâm mọi người và cũng có thật nhiều người bạn thương yêu em. Em nhạy cảm, luôn chu đáo hỏi thăm xem mọi người có ổn không. Em giỏi giang và đầy bản lĩnh, dù phải nắm đầu đội toàn mấy người chướng khí nhưng em vẫn gánh vác và xử lý mọi thứ cực kỳ êm đẹp.</p>
       <p>Em dũng cảm biết nhường nào. Dù có nhiều đắn đo, trăn trở lẫn khó khăn, em vẫn kiên trì tiến về phía trước vì mục tiêu của mình. Những dấu chân cũ đôi lần khiến em ngột ngạt và mất phương hướng, nhưng tui thấy em vẫn đang từng ngày kiên cường bước qua. Em giỏi lắm ấy.</p>
@@ -393,9 +394,22 @@
   const overlay = document.getElementById('overlay');
   const closeBtn = document.getElementById('closeBtn');
 
+  const COUNTER_NAMESPACE = 'kennie-letter1-thong29-2026';
+  const COUNTER_KEY = 'opened';
+  let counted = false;
+
+  function logOpen(){
+    if (counted) return;
+    counted = true;
+    try {
+      fetch(`https://abacus.jasoncameron.dev/hit/${COUNTER_NAMESPACE}/${COUNTER_KEY}`).catch(() => {});
+    } catch (e) {}
+  }
+
   function openLetter(){
     envelope.classList.add('open');
     setTimeout(() => overlay.classList.add('show'), 500);
+    logOpen();
   }
 
   function closeLetter(){
